@@ -74,6 +74,7 @@ public class TimingView extends View {
     private OnButtonClickListener mListener;
 
 
+    //TODO 在最上面增加显示的时间
     public TimingView(Context context) {
         this(context, null);
     }
@@ -91,8 +92,9 @@ public class TimingView extends View {
 
         mTimingPaint.setColor(getResources().getColor(R.color.colorSumTime));
 
+        mCentreCirlePaint.setStyle(Paint.Style.FILL);
         mCentreCirlePaint.setColor(getResources().getColor(R.color.colorSetTime));
-        mCentreCirlePaint.setStrokeWidth(5f);
+        mCentreCirlePaint.setStrokeWidth(8f);
 
         mDegreeScalePaint.setColor(getResources().getColor(R.color.colorSetTime));
         mDegreeScalePaint.setStrokeWidth(5f);
@@ -144,6 +146,7 @@ public class TimingView extends View {
             canvas.drawLine(0, 0, 0, -mRadius, mGetTimingPaint);
             canvas.rotate(150);
             canvas.drawLine(0, 0, 0, -mRadius, mGetTimingPaint);
+            clockDegree = 150f;
             mFirstInitView = false;
         } else if (!IsTiming) {
             canvas.drawArc(-mRadius, -mRadius, mRadius, mRadius,
@@ -254,7 +257,7 @@ public class TimingView extends View {
         final TimerTask mTimerTask = new TimerTask() {
             @Override
             public void run() {
-                clockDegree = clockDegree - 0.025f;
+                clockDegree = clockDegree - 0.01f;
                 if (0 < clockDegree) {
                     postInvalidate();
                 } else if (0 > clockDegree){
@@ -265,7 +268,7 @@ public class TimingView extends View {
         };
         IsTiming = true;
         if (0 != clockDegree) {
-            mTimer.schedule(mTimerTask, 0, 250);
+            mTimer.schedule(mTimerTask, 0, 100);
         } else {
             Toast.makeText(mContext, "请选择时间", Toast.LENGTH_SHORT).show();
         }
