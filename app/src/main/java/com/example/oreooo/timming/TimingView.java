@@ -7,11 +7,9 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.Region;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -19,6 +17,7 @@ import java.util.TimerTask;
  * @author Oreo https://github.com/OreoChap
  * @date 2018/12/4
  */
+
 public class TimingView extends View {
 
     Context mContext;
