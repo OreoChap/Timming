@@ -45,7 +45,7 @@ public class TimingView extends View {
     //屏幕宽高
     private int mScreenWidth, mScreenHeight;
 
-    //钟表点击区域
+    //钟表触摸区域
     Region mCircleRegion;
     Path mCirclePath;
 
@@ -122,6 +122,7 @@ public class TimingView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        //设置触摸区域
         centreCircleX = w / 2;
         centreCircleY = h / 3;
         mRadius = w / 3;
@@ -133,6 +134,7 @@ public class TimingView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
         //绘制基本图形
         canvas.translate(centreCircleX, centreCircleY);
         canvas.drawCircle(0, 0, mRadius, mBackGroundPaint);
@@ -197,7 +199,7 @@ public class TimingView extends View {
         canvas.drawText(text, -textBound.width() / 2, textBound.height() / 2, paint);
     }
 
-    // TODO 限制1、4象限之间的触摸
+    // TODO 限制1、4象限之间的跨越事件
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (IsTiming) return true;
